@@ -3,9 +3,7 @@ import { EXAMPLES } from '@/data/examples'
 import { useToast } from '@/composables/useToast'
 
 const code = ref('')
-
-const loaded = localStorage.getItem('mermaidly-code')
-if (loaded) code.value = loaded
+let initialized = false
 
 export function useEditor() {
   const { show } = useToast()
@@ -16,6 +14,13 @@ export function useEditor() {
       localStorage.setItem('mermaidly-code', val)
     } catch {}
   })
+
+  function initFromStorage() {
+    if (initialized) return
+    initialized = true
+    const stored = localStorage.getItem('mermaidly-code')
+    if (stored) code.value = stored
+  }
 
   async function pasteFromClipboard() {
     try {
@@ -40,5 +45,9 @@ export function useEditor() {
     code.value = ''
   }
 
-  return { code, charCount, pasteFromClipboard, loadExample, clear }
+  function setCode(val: string) {
+    code.value = val
+  }
+
+  return { code, charCount, pasteFromClipboard, loadExample, clear, setCode, initFromStorage }
 }
