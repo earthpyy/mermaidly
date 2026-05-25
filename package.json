@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --filter @mermaidly/web dev",
+    "build": "pnpm --filter @mermaidly/web build",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "prettier": "^3.5.0",
+    "prettier-plugin-tailwindcss": "^0.6.12"
+  }
+}
