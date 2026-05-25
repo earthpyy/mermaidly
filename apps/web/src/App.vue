@@ -8,12 +8,7 @@
         : 'grid-cols-[420px_1fr] max-[860px]:grid-cols-[1fr] max-[860px]:grid-rows-[280px_1fr]'
     "
   >
-    <EditorPane
-      v-if="!viewOnly"
-      v-show="!editorCollapsed"
-      ref="editorRef"
-      :status="status"
-    />
+    <EditorPane v-if="!viewOnly" v-show="!editorCollapsed" ref="editorRef" :status="status" />
     <DiagramPane
       ref="diagramRef"
       :svg-output="svgOutput"
@@ -49,10 +44,7 @@ const { theme } = useTheme()
 const { code, setCode, initFromStorage } = useEditor()
 const { svgOutput, status, errorMessage } = useDiagram(code, theme)
 const { open: shareOpen, close: shareClose, loadFromHash } = useShare(code)
-const { handleSave } = useExport(
-  theme,
-  () => diagramRef.value?.getCanvasElement() ?? null,
-)
+const { handleSave } = useExport(theme, () => diagramRef.value?.getCanvasElement() ?? null)
 
 const editorCollapsed = ref(localStorage.getItem('mermaidly-editor-collapsed') === '1')
 const viewOnly = ref(false)

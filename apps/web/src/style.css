@@ -53,7 +53,12 @@ body {
 }
 
 body {
-  font-family: 'Geist', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-family:
+    'Geist',
+    -apple-system,
+    BlinkMacSystemFont,
+    system-ui,
+    sans-serif;
   background: var(--bg);
   color: var(--fg);
   font-size: 14px;

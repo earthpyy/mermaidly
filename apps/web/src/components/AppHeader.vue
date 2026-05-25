@@ -37,12 +37,7 @@
           <path d="M12 17h.01" />
         </svg>
       </button>
-      <button
-        class="btn btn-icon"
-        title="Toggle theme"
-        aria-label="Toggle theme"
-        @click="toggle"
-      >
+      <button class="btn btn-icon" title="Toggle theme" aria-label="Toggle theme" @click="toggle">
         <svg
           v-if="theme === 'light'"
           viewBox="0 0 24 24"

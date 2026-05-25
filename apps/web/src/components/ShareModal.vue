@@ -9,25 +9,28 @@
   >
     <div class="modal-card">
       <div
-        class="flex items-center justify-between border-b px-5 pt-[18px] pb-3.5"
+        class="flex items-center justify-between border-b px-5 pb-3.5 pt-[18px]"
         :style="{ borderColor: 'var(--border)' }"
       >
-        <h2 id="share-title" class="m-0 text-[15px] font-semibold tracking-tight">
-          Share diagram
-        </h2>
+        <h2 id="share-title" class="m-0 text-[15px] font-semibold tracking-tight">Share diagram</h2>
         <button class="btn btn-ghost btn-icon" aria-label="Close" @click="close">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 6 6 18" /><path d="m6 6 12 12" />
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
           </svg>
         </button>
       </div>
       <div class="flex flex-col gap-4 px-5 py-[18px]">
         <!-- Link type toggle -->
         <div>
-          <label
-            class="mb-1.5 block text-xs font-medium"
-            :style="{ color: 'var(--fg-muted)' }"
-          >
+          <label class="mb-1.5 block text-xs font-medium" :style="{ color: 'var(--fg-muted)' }">
             Link type
           </label>
           <div
@@ -41,7 +44,11 @@
               class="flex-1 cursor-pointer rounded-[5px] py-[7px] text-center text-xs font-medium transition-all duration-100"
               :style="
                 shareType === opt.value
-                  ? { background: 'var(--bg-elev)', color: 'var(--fg)', boxShadow: 'var(--shadow-sm)' }
+                  ? {
+                      background: 'var(--bg-elev)',
+                      color: 'var(--fg)',
+                      boxShadow: 'var(--shadow-sm)',
+                    }
                   : { color: 'var(--fg-muted)' }
               "
             >
@@ -59,10 +66,7 @@
 
         <!-- Link field -->
         <div>
-          <label
-            class="mb-1.5 block text-xs font-medium"
-            :style="{ color: 'var(--fg-muted)' }"
-          >
+          <label class="mb-1.5 block text-xs font-medium" :style="{ color: 'var(--fg-muted)' }">
             {{ shareLinkLabel }}
           </label>
           <div class="flex gap-1.5">
@@ -82,7 +86,14 @@
               @focus="($event.target as HTMLInputElement).select()"
             />
             <button class="btn btn-primary" @click="copyLink">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
                 <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
                 <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
               </svg>

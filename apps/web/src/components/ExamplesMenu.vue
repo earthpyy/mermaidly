@@ -15,12 +15,7 @@
       Examples
     </button>
     <div class="menu" :class="{ open }" role="menu">
-      <button
-        v-for="item in items"
-        :key="item.key"
-        role="menuitem"
-        @click="select(item.key)"
-      >
+      <button v-for="item in items" :key="item.key" role="menuitem" @click="select(item.key)">
         {{ item.label }}
       </button>
     </div>
