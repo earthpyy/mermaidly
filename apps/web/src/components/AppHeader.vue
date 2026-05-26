@@ -7,13 +7,20 @@
     }"
   >
     <div class="flex items-center gap-2.5 text-[15px] font-semibold tracking-tight">
-      <div
-        class="grid h-[26px] w-[26px] place-items-center rounded-[7px] text-[13px] font-bold text-white shadow-[var(--shadow-sm)]"
-        style="background: linear-gradient(135deg, var(--accent), oklch(0.7 0.1 220))"
+      <svg
+        class="h-[26px] w-[26px] shrink-0 shadow-[var(--shadow-sm)]"
+        viewBox="0 0 100 100"
         aria-hidden="true"
       >
-        m
-      </div>
+        <defs>
+          <linearGradient id="header-icon-g" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#FF3670" />
+            <stop offset="100%" stop-color="#FF6B8A" />
+          </linearGradient>
+        </defs>
+        <rect width="100" height="100" rx="22" fill="url(#header-icon-g)" />
+        <path d="M18 72 V34 H45 V34 H55 V34 H82 V72 H72 V44 H55 V72 H45 V44 H28 V72 Z" fill="white" />
+      </svg>
       <span :style="{ color: 'var(--fg)' }">mermaidly</span>
       <span
         class="ml-1 border-l pl-2.5 text-[13px] font-normal max-[640px]:hidden"
