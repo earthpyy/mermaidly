@@ -15,6 +15,7 @@
       :status="status"
       :error-message="errorMessage"
       :editor-collapsed="editorCollapsed || viewOnly"
+      :theme="theme"
       @toggle-editor="toggleEditor"
       @open-share="shareOpen"
       @save="handleSave"
@@ -47,7 +48,7 @@ const { theme } = useTheme()
 const { code, setCode, initFromStorage } = useEditor()
 const { svgOutput, status, errorMessage } = useDiagram(code, theme)
 const { open: shareOpen, close: shareClose, loadFromHash } = useShare(code)
-const { handleSave } = useExport(theme, () => diagramRef.value?.getCanvasElement() ?? null)
+const { handleSave } = useExport(theme, code, () => diagramRef.value?.getCanvasElement() ?? null)
 const { close: helpClose } = useHelp()
 
 const editorCollapsed = ref(localStorage.getItem('mermaidly-editor-collapsed') === '1')

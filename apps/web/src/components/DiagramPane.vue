@@ -122,7 +122,12 @@
           </svg>
           Share
         </button>
-        <SaveMenu ref="saveMenuRef" :disabled="!hasOutput" @select="(f) => $emit('save', f)" />
+        <SaveMenu
+          ref="saveMenuRef"
+          :disabled="!hasOutput"
+          :theme="theme"
+          @select="(f, t) => $emit('save', f, t)"
+        />
       </div>
     </div>
 
@@ -238,12 +243,13 @@ const props = defineProps<{
   status: 'idle' | 'rendering' | 'ok' | 'error'
   errorMessage: string
   editorCollapsed: boolean
+  theme: 'light' | 'dark'
 }>()
 
 defineEmits<{
   toggleEditor: []
   openShare: []
-  save: [format: string]
+  save: [format: string, exportTheme: 'light' | 'dark']
 }>()
 
 const stageRef = ref<HTMLElement>()

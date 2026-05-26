@@ -3,7 +3,7 @@ import mermaid from 'mermaid'
 
 let renderCounter = 0
 
-function getMermaidThemeConfig(theme: string) {
+export function getMermaidThemeConfig(theme: string) {
   if (theme === 'dark') {
     return {
       theme: 'dark' as const,
@@ -32,7 +32,7 @@ function getMermaidThemeConfig(theme: string) {
   }
 }
 
-function initMermaid(theme: string) {
+export function initMermaid(theme: string) {
   const themeConfig = getMermaidThemeConfig(theme)
   mermaid.initialize({
     startOnLoad: false,
