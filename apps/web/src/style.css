@@ -85,6 +85,10 @@ body {
   outline-offset: 2px;
 }
 
+textarea:focus-visible {
+  outline: none;
+}
+
 /* ─── BUTTONS ─── */
 .btn {
   appearance: none;

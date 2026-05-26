@@ -26,7 +26,6 @@
         SVG vector <span class="kbd">.svg</span>
       </button>
       <button role="menuitem" @click="select('copy-svg')">Copy SVG code</button>
-      <button role="menuitem" @click="select('copy-img')">Copy as image</button>
     </div>
   </div>
 </template>

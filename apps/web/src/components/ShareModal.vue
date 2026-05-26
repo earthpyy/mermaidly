@@ -133,7 +133,7 @@ const {
 const linkInputRef = ref<HTMLInputElement>()
 
 const typeOptions = [
-  { value: 'direct' as const, label: 'Direct link' },
+  { value: 'direct' as const, label: 'Full feature' },
   { value: 'readonly' as const, label: 'View only' },
 ]
 </script>

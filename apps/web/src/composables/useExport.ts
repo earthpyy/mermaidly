@@ -12,12 +12,13 @@ function getSvgElement(canvasEl: HTMLElement | null): SVGSVGElement | null {
 function cloneSvgString(svgEl: SVGSVGElement): string {
   const clone = svgEl.cloneNode(true) as SVGSVGElement
   clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg')
-  const vb = clone.getAttribute('viewBox')
-  if (vb && !clone.getAttribute('width')) {
-    const parts = vb.split(' ').map(Number)
-    clone.setAttribute('width', String(parts[2]))
-    clone.setAttribute('height', String(parts[3]))
-  }
+
+  const vb = svgEl.viewBox.baseVal
+  const w = (vb && vb.width) || svgEl.clientWidth || 1024
+  const h = (vb && vb.height) || svgEl.clientHeight || 768
+  clone.setAttribute('width', String(w))
+  clone.setAttribute('height', String(h))
+
   return new XMLSerializer().serializeToString(clone)
 }
 
@@ -34,8 +35,7 @@ async function svgToPngBlob(
   const ch = Math.ceil(h * scale)
 
   const img = new Image()
-  const blob = new Blob([str], { type: 'image/svg+xml;charset=utf-8' })
-  const url = URL.createObjectURL(blob)
+  const url = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(str)
 
   await new Promise<void>((res, rej) => {
     img.onload = () => res()
@@ -50,7 +50,6 @@ async function svgToPngBlob(
   ctx.fillStyle = isDark ? '#0c0c0b' : '#ffffff'
   ctx.fillRect(0, 0, cw, ch)
   ctx.drawImage(img, 0, 0, cw, ch)
-  URL.revokeObjectURL(url)
 
   return new Promise((res) => canvas.toBlob(res as BlobCallback, 'image/png'))
 }
@@ -107,23 +106,6 @@ export function useExport(theme: Ref<string>, getCanvas: () => HTMLElement | nul
     }
   }
 
-  async function copyAsImage() {
-    const svgEl = getSvg()
-    if (!svgEl) return
-    try {
-      const blob = await svgToPngBlob(svgEl, 2, theme.value === 'dark')
-      if (blob && window.ClipboardItem) {
-        await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })])
-        show('Image copied')
-      } else if (blob) {
-        download(blob, `mermaidly-${getTimestamp()}.png`)
-        show('Saved instead (clipboard not supported)')
-      }
-    } catch {
-      show('Copy failed')
-    }
-  }
-
   async function handleSave(format: string) {
     switch (format) {
       case 'png':
@@ -134,10 +116,8 @@ export function useExport(theme: Ref<string>, getCanvas: () => HTMLElement | nul
         return saveSvg()
       case 'copy-svg':
         return copySvgCode()
-      case 'copy-img':
-        return copyAsImage()
     }
   }
 
-  return { savePng, saveSvg, copySvgCode, copyAsImage, handleSave }
+  return { savePng, saveSvg, copySvgCode, handleSave }
 }

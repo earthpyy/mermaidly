@@ -112,7 +112,7 @@
             class="m-0 flex list-none flex-col gap-1.5 p-0 text-[13px]"
             :style="{ color: 'var(--fg-muted)' }"
           >
-            <li>Scroll to zoom in/out on the diagram</li>
+            <li>⌘ + Scroll to zoom in/out on the diagram</li>
             <li>Click and drag to pan around</li>
             <li>Use "View only" links to share read-only diagrams</li>
           </ul>
