@@ -30,8 +30,7 @@
           </svg>
           Paste
         </button>
-        <ExamplesMenu ref="examplesMenuRef" @select="loadExample" />
-        <button class="btn btn-ghost btn-icon" title="Clear" @click="clear">
+        <button class="btn btn-ghost btn-icon btn-danger-hover" title="Clear" @click="clear">
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -115,7 +114,6 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import ExamplesMenu from '@/components/ExamplesMenu.vue'
 import { useEditor } from '@/composables/useEditor'
 
 const props = defineProps<{
@@ -124,7 +122,6 @@ const props = defineProps<{
 
 const { code, charCount, pasteFromClipboard, loadExample, clear } = useEditor()
 const textareaRef = ref<HTMLTextAreaElement>()
-const examplesMenuRef = ref<InstanceType<typeof ExamplesMenu>>()
 
 const statusText = computed(() => {
   switch (props.status) {
@@ -152,6 +149,6 @@ const statusDotColor = computed(() => {
 
 defineExpose({
   focus: () => textareaRef.value?.focus(),
-  closeMenus: () => examplesMenuRef.value?.close(),
+  closeMenus: () => {},
 })
 </script>
