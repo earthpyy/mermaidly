@@ -21,6 +21,7 @@
     />
   </main>
   <ShareModal />
+  <HelpModal />
   <ToastNotification />
 </template>
 
@@ -30,12 +31,14 @@ import AppHeader from '@/components/AppHeader.vue'
 import EditorPane from '@/components/EditorPane.vue'
 import DiagramPane from '@/components/DiagramPane.vue'
 import ShareModal from '@/components/ShareModal.vue'
+import HelpModal from '@/components/HelpModal.vue'
 import ToastNotification from '@/components/ToastNotification.vue'
 import { useEditor } from '@/composables/useEditor'
 import { useTheme } from '@/composables/useTheme'
 import { useDiagram } from '@/composables/useDiagram'
 import { useShare } from '@/composables/useShare'
 import { useExport } from '@/composables/useExport'
+import { useHelp } from '@/composables/useHelp'
 
 const editorRef = ref<InstanceType<typeof EditorPane>>()
 const diagramRef = ref<InstanceType<typeof DiagramPane>>()
@@ -45,6 +48,7 @@ const { code, setCode, initFromStorage } = useEditor()
 const { svgOutput, status, errorMessage } = useDiagram(code, theme)
 const { open: shareOpen, close: shareClose, loadFromHash } = useShare(code)
 const { handleSave } = useExport(theme, () => diagramRef.value?.getCanvasElement() ?? null)
+const { close: helpClose } = useHelp()
 
 const editorCollapsed = ref(localStorage.getItem('mermaidly-editor-collapsed') === '1')
 const viewOnly = ref(false)
@@ -67,6 +71,7 @@ function onKeyDown(e: KeyboardEvent) {
   }
   if (e.key === 'Escape') {
     shareClose()
+    helpClose()
     editorRef.value?.closeMenus()
     diagramRef.value?.closeMenus()
   }

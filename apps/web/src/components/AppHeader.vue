@@ -23,7 +23,7 @@
       </span>
     </div>
     <div class="flex items-center gap-1.5">
-      <button class="btn btn-ghost" title="Help" aria-label="Help">
+      <button class="btn btn-ghost" title="Help" aria-label="Help" @click="helpOpen">
         <svg
           viewBox="0 0 24 24"
           fill="none"
@@ -75,6 +75,8 @@
 
 <script setup lang="ts">
 import { useTheme } from '@/composables/useTheme'
+import { useHelp } from '@/composables/useHelp'
 
 const { theme, toggle } = useTheme()
+const { open: helpOpen } = useHelp()
 </script>
