@@ -5,19 +5,22 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "pnpm run build && wrangler dev",
+    "deploy": "pnpm run build && wrangler deploy"
   },
   "dependencies": {
     "mermaid": "^11.4.1",
     "vue": "^3.5.13"
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.38.0",
     "@tailwindcss/vite": "^4.1.7",
     "@types/node": "^25.9.1",
     "@vitejs/plugin-vue": "^5.2.3",
     "tailwindcss": "^4.1.7",
     "typescript": "~5.8.3",
     "vite": "^6.3.5",
-    "vue-tsc": "^2.2.10"
+    "vue-tsc": "^2.2.10",
+    "wrangler": "^4.94.0"
   }
 }
