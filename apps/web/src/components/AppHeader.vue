@@ -19,7 +19,10 @@
           </linearGradient>
         </defs>
         <rect width="100" height="100" rx="22" fill="url(#header-icon-g)" />
-        <path d="M18 72 V34 H45 V34 H55 V34 H82 V72 H72 V44 H55 V72 H45 V44 H28 V72 Z" fill="white" />
+        <path
+          d="M18 72 V34 H45 V34 H55 V34 H82 V72 H72 V44 H55 V72 H45 V44 H28 V72 Z"
+          fill="white"
+        />
       </svg>
       <span :style="{ color: 'var(--fg)' }">mermaidly</span>
       <span

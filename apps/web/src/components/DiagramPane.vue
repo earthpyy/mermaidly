@@ -12,6 +12,28 @@
       <div class="flex items-center gap-1.5">
         <button
           class="btn btn-ghost btn-icon"
+          :title="editorCollapsed ? 'Expand code panel' : 'Collapse code panel'"
+          :aria-label="editorCollapsed ? 'Expand code panel' : 'Collapse code panel'"
+          :aria-pressed="editorCollapsed"
+          :style="
+            editorCollapsed ? { color: 'var(--accent)', background: 'var(--accent-soft)' } : {}
+          "
+          @click="$emit('toggleEditor')"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <line x1="9" y1="3" x2="9" y2="21" />
+          </svg>
+        </button>
+        <button
+          class="btn btn-ghost btn-icon"
           title="Zoom out"
           :disabled="!hasOutput"
           @click="zoomOut"
@@ -29,12 +51,20 @@
             <path d="M8 11h6" />
           </svg>
         </button>
-        <span
-          class="min-w-[42px] text-center text-xs"
-          :style="{ fontFamily: '\'Geist Mono\', monospace', color: 'var(--fg-muted)' }"
-        >
-          {{ zoomPercent }}
-        </span>
+        <input
+          ref="zoomInputRef"
+          class="h-6 w-[48px] rounded-[var(--radius-sm)] border bg-transparent text-center text-xs outline-none"
+          :style="{
+            fontFamily: '\'Geist Mono\', monospace',
+            color: 'var(--fg-muted)',
+            borderColor: 'var(--border)',
+          }"
+          :value="zoomPercent"
+          :disabled="!hasOutput"
+          @focus="($event.target as HTMLInputElement).select()"
+          @keydown.enter="commitZoomInput"
+          @blur="commitZoomInput"
+        />
         <button
           class="btn btn-ghost btn-icon"
           title="Zoom in"
@@ -57,13 +87,9 @@
         </button>
         <button
           class="btn btn-ghost btn-icon"
-          :title="editorCollapsed ? 'Expand code panel' : 'Collapse code panel'"
-          :aria-label="editorCollapsed ? 'Expand code panel' : 'Collapse code panel'"
-          :aria-pressed="editorCollapsed"
-          :style="
-            editorCollapsed ? { color: 'var(--accent)', background: 'var(--accent-soft)' } : {}
-          "
-          @click="$emit('toggleEditor')"
+          title="Reset zoom"
+          :disabled="!hasOutput || zoom === 1"
+          @click="resetZoom"
         >
           <svg
             viewBox="0 0 24 24"
@@ -73,8 +99,8 @@
             stroke-linecap="round"
             stroke-linejoin="round"
           >
-            <rect x="3" y="3" width="18" height="18" rx="2" />
-            <line x1="9" y1="3" x2="9" y2="21" />
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+            <path d="M3 3v5h5" />
           </svg>
         </button>
       </div>
@@ -223,11 +249,13 @@ defineEmits<{
 const stageRef = ref<HTMLElement>()
 const canvasRef = ref<HTMLElement>()
 const saveMenuRef = ref<InstanceType<typeof SaveMenu>>()
+const zoomInputRef = ref<HTMLInputElement>()
 
 const {
   zoom,
   zoomIn,
   zoomOut,
+  setZoom,
   fitToScreen,
   applyTransform,
   onWheel,
@@ -238,6 +266,20 @@ const {
 
 const hasOutput = computed(() => props.svgOutput.length > 0)
 const zoomPercent = computed(() => Math.round(zoom.value * 100) + '%')
+
+function resetZoom() {
+  fitToScreen()
+  if (canvasRef.value) applyTransform(canvasRef.value)
+}
+
+function commitZoomInput(e: Event) {
+  const input = e.target as HTMLInputElement
+  const parsed = parseInt(input.value.replace('%', ''), 10)
+  if (!isNaN(parsed) && parsed > 0) {
+    setZoom(parsed / 100)
+  }
+  input.value = zoomPercent.value
+}
 
 watch(
   () => props.svgOutput,

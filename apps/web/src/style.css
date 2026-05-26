@@ -121,6 +121,7 @@ textarea:focus-visible {
 .btn:disabled {
   opacity: 0.45;
   cursor: not-allowed;
+  pointer-events: none;
 }
 
 .btn svg {
@@ -156,7 +157,7 @@ textarea:focus-visible {
   border-color: transparent;
 }
 
-.btn-danger-hover:hover {
+.btn-danger-hover:hover:not(:disabled) {
   color: var(--danger);
   background: oklch(0.65 0.2 25 / 0.1);
   border-color: transparent;

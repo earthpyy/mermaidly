@@ -73,6 +73,7 @@ export function useZoom() {
     panY,
     zoomIn,
     zoomOut,
+    setZoom,
     fitToScreen,
     applyTransform,
     onWheel,
