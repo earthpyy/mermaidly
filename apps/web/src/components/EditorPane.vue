@@ -78,7 +78,7 @@
           Paste your Mermaid code
         </h3>
         <p class="m-0 max-w-[280px] text-center text-[13px]" :style="{ color: 'var(--fg-muted)' }">
-          It'll render automatically. Or grab an example to get started.
+          Render automatically. Or grab an example to get started.
         </p>
         <div class="pointer-events-auto flex flex-wrap justify-center gap-2">
           <button class="btn btn-primary" @click="pasteFromClipboard">
