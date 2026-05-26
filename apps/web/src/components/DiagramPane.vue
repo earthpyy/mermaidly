@@ -10,7 +10,12 @@
       :style="{ background: 'var(--bg-elev)', borderColor: 'var(--border)' }"
     >
       <div class="flex items-center gap-1.5">
-        <button class="btn btn-ghost btn-icon" title="Zoom out" @click="zoomOut">
+        <button
+          class="btn btn-ghost btn-icon"
+          title="Zoom out"
+          :disabled="!hasOutput"
+          @click="zoomOut"
+        >
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -30,7 +35,12 @@
         >
           {{ zoomPercent }}
         </span>
-        <button class="btn btn-ghost btn-icon" title="Zoom in" @click="zoomIn">
+        <button
+          class="btn btn-ghost btn-icon"
+          title="Zoom in"
+          :disabled="!hasOutput"
+          @click="zoomIn"
+        >
           <svg
             viewBox="0 0 24 24"
             fill="none"

@@ -30,7 +30,12 @@
           </svg>
           Paste
         </button>
-        <button class="btn btn-ghost btn-icon btn-danger-hover" title="Clear" @click="clear">
+        <button
+          class="btn btn-ghost btn-icon btn-danger-hover"
+          title="Clear"
+          :disabled="code.length === 0"
+          @click="clear"
+        >
           <svg
             viewBox="0 0 24 24"
             fill="none"
