@@ -37,6 +37,15 @@
 - **Zoom controls** — pan, zoom in/out, fit to screen, editable zoom level
 - **Example gallery** — preloaded examples for quick starts
 - **No backend** — everything runs in your browser, nothing is sent to a server
+- **Agent skills** — teach your AI agent to generate shareable mermaidly.app links directly from Mermaid diagram code
+
+## Agent Skills
+
+```bash
+npx skills add earthpyy/mermaidly
+```
+
+Works with Claude Code, Gemini CLI, GitHub Copilot, and other agents that support the [Skills](https://www.skills.sh/) system. Once installed, your agent can produce `mermaidly.app/#view=…` and `mermaidly.app/#code=…` links whenever it generates or receives a Mermaid diagram.
 
 ## Getting Started
 
