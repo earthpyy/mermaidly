@@ -57,6 +57,7 @@
       <textarea
         ref="textareaRef"
         v-model="code"
+        aria-label="Mermaid code editor"
         spellcheck="false"
         autocomplete="off"
         autocorrect="off"
@@ -74,9 +75,9 @@
         v-if="code.length === 0"
         class="pointer-events-none absolute inset-0 flex flex-col items-center gap-4 px-5 pt-[60px] transition-opacity duration-200"
       >
-        <h3 class="m-0 text-sm font-medium" :style="{ color: 'var(--fg)' }">
+        <h2 class="m-0 text-sm font-medium" :style="{ color: 'var(--fg)' }">
           Paste your Mermaid code
-        </h3>
+        </h2>
         <p class="m-0 max-w-[280px] text-center text-[13px]" :style="{ color: 'var(--fg-muted)' }">
           Render automatically. Or grab an example to get started.
         </p>

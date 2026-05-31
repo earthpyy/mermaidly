@@ -53,6 +53,7 @@
         </button>
         <input
           ref="zoomInputRef"
+          aria-label="Zoom level (percent)"
           class="h-6 w-[48px] rounded-[var(--radius-sm)] border bg-transparent text-center text-xs outline-none"
           :style="{
             fontFamily: '\'Geist Mono\', monospace',
@@ -168,9 +169,9 @@
             <rect x="14" y="14" width="7" height="7" rx="1" />
           </svg>
         </div>
-        <h3 class="mb-1.5 text-[15px] font-medium" :style="{ color: 'var(--fg)' }">
+        <h2 class="mb-1.5 text-[15px] font-medium" :style="{ color: 'var(--fg)' }">
           No diagram yet
-        </h3>
+        </h2>
         <p class="text-[13px] leading-relaxed" :style="{ color: 'var(--fg-muted)' }">
           Paste your Mermaid code on the left to render it here.
         </p>
@@ -202,9 +203,9 @@
               <path d="M12 16h.01" />
             </svg>
           </div>
-          <h3 class="mb-1.5 text-[15px] font-medium" :style="{ color: 'var(--fg)' }">
+          <h2 class="mb-1.5 text-[15px] font-medium" :style="{ color: 'var(--fg)' }">
             Couldn't render
-          </h3>
+          </h2>
           <p class="text-[13px] leading-relaxed" :style="{ color: 'var(--fg-muted)' }">
             There's a syntax issue in your Mermaid code.
           </p>

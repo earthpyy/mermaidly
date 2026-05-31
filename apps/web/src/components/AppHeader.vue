@@ -24,7 +24,9 @@
           fill="white"
         />
       </svg>
-      <span :style="{ color: 'var(--fg)' }">mermaidly</span>
+      <h1 class="m-0 text-[15px] font-semibold tracking-tight" :style="{ color: 'var(--fg)' }">
+        mermaidly
+      </h1>
       <span
         class="ml-1 border-l pl-2.5 text-[13px] font-normal max-[640px]:hidden"
         :style="{ color: 'var(--fg-muted)', borderColor: 'var(--border)' }"
