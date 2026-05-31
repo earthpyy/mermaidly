@@ -1,0 +1,19 @@
+# mermaidly
+
+> mermaidly is a free, single-page web tool for rendering Mermaid diagrams. Paste Mermaid code and the diagram renders instantly in the browser — flowcharts, sequence diagrams, class diagrams, state diagrams, ER diagrams, Gantt charts, and more. Export to PNG or SVG, or share a diagram via a URL that encodes the source.
+
+All rendering happens client-side in the browser. There is no account system, no server-side storage, and no tracking. Shared links encode the diagram source in the URL fragment, so diagram data never reaches a server.
+
+## App
+
+- [mermaidly](https://mermaidly.app/): The diagram editor and renderer. Paste Mermaid code on the left, see the rendered diagram on the right.
+
+## Reference
+
+- [Mermaid documentation](https://mermaid.js.org/intro/): Syntax and diagram types supported by the underlying Mermaid library.
+- [Source code](https://github.com/earthpyy/mermaidly): The project repository on GitHub.
+
+## Notes
+
+- mermaidly is not affiliated with or endorsed by the Mermaid project.
+- Diagrams are rendered with mermaid.js v11.

@@ -38,7 +38,7 @@ export function initMermaid(theme: string) {
     startOnLoad: false,
     ...themeConfig,
     securityLevel: 'loose',
-    fontFamily: 'Geist, system-ui, sans-serif',
+    fontFamily: '\'Geist Variable\', system-ui, sans-serif',
     flowchart: { curve: 'basis', padding: 16 },
   })
 }

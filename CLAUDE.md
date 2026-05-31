@@ -28,3 +28,4 @@ Mermaid diagram renderer SPA — paste code, see diagrams instantly.
 - `tsconfig.node.json` needs `"composite": true` and `@types/node` for vite.config.ts to typecheck
 - esbuild needs `allow-build=esbuild` in `.npmrc` for pnpm to resolve it without warnings
 - Mermaid injects orphan DOM elements on render errors — useDiagram cleans these up manually
+- Fonts are self-hosted via `@fontsource-variable/geist` (imported in `main.ts`), not Google Fonts. The CSS family names are `'Geist Variable'` and `'Geist Mono Variable'` — never plain `'Geist'`/`'Geist Mono'`
