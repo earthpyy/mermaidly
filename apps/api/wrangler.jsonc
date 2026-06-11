@@ -7,12 +7,11 @@
     "enabled": true,
   },
   // KV namespace storing shortId -> { code, viewOnly }.
-  // Create with: pnpm --filter @mermaidly/api exec wrangler kv namespace create LINKS
-  // then paste the returned id below.
+  // The binding name must stay "LINKS" — the worker references env.LINKS.
   "kv_namespaces": [
     {
       "binding": "LINKS",
-      "id": "REPLACE_WITH_KV_NAMESPACE_ID",
+      "id": "087ef385acdd4cb595f692a8a84554a8",
     },
   ],
   "vars": {
