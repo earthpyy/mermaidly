@@ -1,0 +1,22 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "mermaidly-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-05-26",
+  "observability": {
+    "enabled": true,
+  },
+  // KV namespace storing shortId -> { code, viewOnly }.
+  // Create with: pnpm --filter @mermaidly/api exec wrangler kv namespace create LINKS
+  // then paste the returned id below.
+  "kv_namespaces": [
+    {
+      "binding": "LINKS",
+      "id": "REPLACE_WITH_KV_NAMESPACE_ID",
+    },
+  ],
+  "vars": {
+    // Comma-separated list of allowed origins for CORS. Use "*" to allow any.
+    "ALLOWED_ORIGINS": "*",
+  },
+}

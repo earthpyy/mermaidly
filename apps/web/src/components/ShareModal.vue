@@ -105,8 +105,21 @@
             :style="{ color: 'var(--fg-faint)' }"
           >
             <span>{{ shareDescription }}</span>
-            <span :style="{ fontFamily: '\'Geist Mono\', monospace' }">{{ encodedSize }}</span>
+            <span :style="{ fontFamily: '\'Geist Mono\', monospace' }">
+              {{ isShortening ? 'Shortening…' : encodedSize }}
+            </span>
           </div>
+
+          <!-- Shorten toggle -->
+          <label class="mt-2.5 flex cursor-pointer items-center gap-2 text-xs">
+            <input v-model="shorten" type="checkbox" class="accent-[var(--accent)]" />
+            <span :style="{ color: 'var(--fg-muted)' }">
+              Shorten link
+              <span :style="{ color: 'var(--fg-faint)' }"
+                >— shorter URL, expires after 90 days of inactivity</span
+              >
+            </span>
+          </label>
         </div>
       </div>
     </div>
@@ -114,21 +127,29 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useShare } from '@/composables/useShare'
 import { useEditor } from '@/composables/useEditor'
 
 const { code } = useEditor()
 const {
   shareType,
+  shorten,
+  isShortening,
   shareUrl,
   encodedSize,
   shareDescription,
   shareLinkLabel,
   isOpen,
   copyLink,
+  ensureShortened,
   close,
 } = useShare(code)
+
+// Re-mint a short link whenever the mode changes or the user opts back in.
+watch([shareType, shorten], () => {
+  if (isOpen.value) void ensureShortened()
+})
 
 const linkInputRef = ref<HTMLInputElement>()
 

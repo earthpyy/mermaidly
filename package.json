@@ -2,7 +2,10 @@
   "private": true,
   "scripts": {
     "dev": "pnpm --filter @mermaidly/web dev",
+    "dev:api": "pnpm --filter @mermaidly/api dev",
     "build": "pnpm --filter @mermaidly/web build",
+    "deploy:web": "pnpm --filter @mermaidly/web deploy",
+    "deploy:api": "pnpm --filter @mermaidly/api deploy",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
