@@ -3,6 +3,9 @@
   "name": "mermaidly-api",
   "main": "src/index.ts",
   "compatibility_date": "2026-05-26",
+  // Serve the worker at api.mermaidly.app. Requires the mermaidly.app zone to
+  // be on this Cloudflare account; the hostname is provisioned on deploy.
+  "routes": [{ "pattern": "api.mermaidly.app", "custom_domain": true }],
   "observability": {
     "enabled": true,
   },
@@ -16,6 +19,6 @@
   ],
   "vars": {
     // Comma-separated list of allowed origins for CORS. Use "*" to allow any.
-    "ALLOWED_ORIGINS": "*",
+    "ALLOWED_ORIGINS": "https://mermaidly.app",
   },
 }
