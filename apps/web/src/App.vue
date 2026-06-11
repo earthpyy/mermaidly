@@ -78,8 +78,8 @@ function onKeyDown(e: KeyboardEvent) {
   }
 }
 
-onMounted(() => {
-  const hashData = loadFromHash()
+onMounted(async () => {
+  const hashData = await loadFromHash()
   if (hashData) {
     setCode(hashData.code)
     if (hashData.viewOnly) viewOnly.value = true

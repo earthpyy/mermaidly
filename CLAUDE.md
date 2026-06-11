@@ -13,7 +13,9 @@ Mermaid diagram renderer SPA — paste code, see diagrams instantly.
 ## Commands
 
 - `pnpm dev` — start dev server (apps/web)
+- `pnpm dev:api` — start the short-link API worker locally (`wrangler dev`, port 8787)
 - `pnpm build` — typecheck + production build
+- `pnpm deploy:web` / `pnpm deploy:api` — deploy each worker to Cloudflare
 - `pnpm format` — format all files with prettier
 
 ## Architecture
@@ -22,6 +24,8 @@ Mermaid diagram renderer SPA — paste code, see diagrams instantly.
 - useToast, useTheme, useEditor, useShare use module-level refs (singleton state shared across components)
 - Design tokens are CSS custom properties in `apps/web/src/style.css`, toggled via `[data-theme="dark"]` on `<html>`
 - Shared button/menu/modal CSS classes (`.btn`, `.menu`, `.modal-backdrop`) live in style.css alongside Tailwind
+- `apps/api` is a standalone Cloudflare Worker (`src/index.ts`) for short links: `POST /shorten` stores `{code, viewOnly}` in a KV namespace (binding `LINKS`) and returns a random 7-char id; `GET /s/:id` resolves it and rewrites the value to refresh a sliding 90-day TTL. Share links shorten by default to `#s=<id>`; useShare falls back to the inline `#code=`/`#view=` base64 link on opt-out or API failure
+- The web app reads the API base from `VITE_API_BASE` (see `apps/web/.env.example`); useShare defaults to `http://localhost:8787` in dev. The KV namespace id must be filled into `apps/api/wrangler.jsonc` before deploy (`wrangler kv namespace create LINKS`)
 
 ## Gotchas
 
